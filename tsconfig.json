@@ -2,6 +2,7 @@
   "compileOnSave": false,
   "compilerOptions": {
     "baseUrl": "./",
+    "importHelpers": true,
     "outDir": "./dist/out-tsc",
     "sourceMap": true,
     "declaration": false,
@@ -16,6 +17,7 @@
     "lib": [
       "es2018",
       "dom"
-    ]
+    ],
+    "downlevelIteration": true
   }
 }

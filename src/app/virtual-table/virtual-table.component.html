@@ -1,0 +1,126 @@
+<div class="container" cdkScrollable>
+  <div class="top-buffer" [ngStyle]="topBufferStyle$ | async"></div>
+  <table cdk-table [dataSource]="tableDataSource$" class="table table-hover">
+    
+    <!-- Hero Name Column -->
+    <ng-container cdkColumnDef="name">
+      <th cdk-header-cell *cdkHeaderCellDef>
+        <ng-container *ngIf="(index$ | async) === 0">Hero Name</ng-container>
+      </th>
+      <td cdk-cell *cdkCellDef="let row"> {{row.name}} </td>
+    </ng-container>
+
+    <!-- Hero Types Column -->
+    <ng-container cdkColumnDef="types">
+      <th cdk-header-cell *cdkHeaderCellDef>
+        <ng-container *ngIf="(index$ | async) === 0">Types</ng-container>
+      </th>
+      <td cdk-cell *cdkCellDef="let row"> {{row.types}} </td>
+    </ng-container>
+
+    <!-- Hero Attack Column -->
+    <ng-container cdkColumnDef="attack">
+      <th cdk-header-cell *cdkHeaderCellDef>
+        <ng-container *ngIf="(index$ | async) === 0">Attack</ng-container>
+      </th>
+      <td cdk-cell 
+          *cdkCellDef="let row" 
+          [ngClass]="{ 
+                      'table-success': superlatives$.value['highest-attack'] === row.name,
+                      'table-danger': superlatives$.value['lowest-attack'] === row.name
+                    }">
+        {{row.attack}} 
+      </td>
+    </ng-container>
+
+    <!-- Hero Defense Column -->
+    <ng-container cdkColumnDef="defense">
+      <th cdk-header-cell *cdkHeaderCellDef>
+        <ng-container *ngIf="(index$ | async) === 0">Defense</ng-container>
+      </th>
+      <td cdk-cell 
+          *cdkCellDef="let row" 
+          [ngClass]="{ 
+                      'table-success': superlatives$.value['highest-defense'] === row.name,
+                      'table-danger': superlatives$.value['lowest-defense'] === row.name
+                    }">
+        {{row.defense}} 
+      </td>
+    </ng-container>
+
+    <!-- Hero Speed Column -->
+    <ng-container cdkColumnDef="speed">
+      <th cdk-header-cell *cdkHeaderCellDef>
+        <ng-container *ngIf="(index$ | async) === 0">Speed</ng-container>
+      </th>
+      <td cdk-cell 
+      *cdkCellDef="let row" 
+      [ngClass]="{ 
+                  'table-success': superlatives$.value['highest-speed'] === row.name,
+                  'table-danger': superlatives$.value['lowest-speed'] === row.name
+                }">
+    {{row.speed}} 
+  </td>
+    </ng-container>
+
+    <!-- Hero Healing Column -->
+    <ng-container cdkColumnDef="healing">
+      <th cdk-header-cell *cdkHeaderCellDef>
+        <ng-container *ngIf="(index$ | async) === 0">Healing</ng-container>
+      </th>
+      <td cdk-cell 
+          *cdkCellDef="let row" 
+          [ngClass]="{ 
+                      'table-success': superlatives$.value['highest-healing'] === row.name,
+                      'table-danger': superlatives$.value['lowest-healing'] === row.name
+                    }">
+        {{row.healing}} 
+      </td>
+    </ng-container>
+
+    <!-- Hero Recovery Column -->
+    <ng-container cdkColumnDef="recovery">
+      <th cdk-header-cell *cdkHeaderCellDef>
+        <ng-container *ngIf="(index$ | async) === 0">Recovery</ng-container>
+      </th>
+      <td cdk-cell 
+          *cdkCellDef="let row" 
+          [ngClass]="{ 
+                      'table-success': superlatives$.value['highest-recovery'] === row.name,
+                      'table-danger': superlatives$.value['lowest-recovery'] === row.name
+                    }">
+        {{row.recovery}} 
+      </td>
+    </ng-container>
+
+    <!-- Hero Health Column -->
+    <ng-container cdkColumnDef="health">
+      <th cdk-header-cell *cdkHeaderCellDef>
+        <ng-container *ngIf="(index$ | async) === 0">Health</ng-container>
+      </th>
+      <td cdk-cell 
+          *cdkCellDef="let row" 
+          [ngClass]="{ 
+                      'table-success': superlatives$.value['highest-health'] === row.name,
+                      'table-danger': superlatives$.value['lowest-health'] === row.name
+                    }">
+        {{row.health}} 
+      </td>
+    </ng-container>
+
+    <!-- Header and Row Declarations -->
+    <tr cdk-header-row *cdkHeaderRowDef="displayedColumns$.value"></tr>
+    <tr cdk-row *cdkRowDef="let row; columns: displayedColumns$.value"></tr>
+
+  </table>
+  <div class="bottom-buffer" [ngStyle]="bottomBufferStyle$ | async"></div>
+</div>
+
+<pre>
+  total: {{ totalRunway }}
+  percent: {{ percentageOfRunway | async }}
+  index: {{ index$ | async }}
+  topStyle: {{ topBufferStyle$ | async | json }}
+  bottomStyle: {{ bottomBufferStyle$ | async | json }}
+</pre>
+  
